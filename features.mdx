@@ -1,0 +1,132 @@
+---
+title: Core Features of Sheng Hualuo
+description: Explore the essential tools for analyzing website performance, discovering traffic opportunities, and optimizing for search visibility.
+---
+
+## Overview
+
+Sheng Hualuo provides powerful tools to monitor your website's performance in Bing's search index. You gain insights into traffic sources, index coverage, and optimization opportunities. Use these features to improve visibility and drive more organic traffic.
+
+<Columns cols={2}>
+  <Card title="Performance Analytics" icon="bar-chart-3" href="#performance-analytics">
+    Track impressions, clicks, and rankings over time.
+  </Card>
+  <Card title="Traffic Explorer" icon="trending-up" href="#traffic-explorer">
+    Discover untapped keywords and content gaps.
+  </Card>
+  <Card title="Optimization Tools" icon="settings" href="#optimization-tools">
+    Configure sitemaps, robots.txt, and SEO settings.
+  </Card>
+  <Card title="AI Insights" icon="zap" href="#ai-insights">
+    Leverage AI for personalized search recommendations.
+  </Card>
+</Columns>
+
+## Website Performance Analytics
+
+Monitor how Bing indexes and ranks your site with detailed metrics.
+
+<Callout kind="info">
+  Access analytics via the dashboard at `https://dashboard.example.com/analytics`.
+</Callout>
+
+Use the performance dashboard to view key metrics like impressions, clicks, and average position.
+
+<Tabs>
+  <Tab title="Impressions & Clicks" icon="activity">
+    Review query-level data to identify top-performing pages.
+
+    ```javascript
+    // Fetch performance data via API
+    const response = await fetch('https://api.example.com/v1/performance', {
+      headers: { Authorization: `Bearer ${YOUR_API_KEY}` }
+    });
+    const data = await response.json();
+    console.log(data.impressions); // e.g., 15000
+    ```
+  </Tab>
+  <Tab title="Index Coverage" icon="search">
+    Check crawl errors and index status.
+
+    ```javascript
+    // Query index status
+    const indexData = await fetch('https://api.example.com/v1/index-coverage');
+    console.log(indexData.validPages); // e.g., 2500
+    ```
+  </Tab>
+</Tabs>
+
+## Traffic Opportunity Explorer
+
+Identify new keywords and pages with growth potential.
+
+<Steps>
+  <Step title="Navigate to Explorer" icon="compass">
+    Go to the Traffic Opportunities section in your dashboard.
+  </Step>
+  <Step title="Filter Opportunities" icon="filter">
+    Select filters for low-ranking queries or content gaps.
+  </Step>
+  <Step title="Export Data" icon="download">
+    Download CSV for further analysis.
+
+````bash
+curl -H "Authorization: Bearer YOUR_API_KEY" \
+  https://api.example.com/v1/opportunities/export
+````
+
+  </Step>
+</Steps>
+
+## Optimization Settings and Tools
+
+Fine-tune your site's configuration for better crawling and indexing.
+
+<ParamField path="sitemap.xml" param-type="url" required="true">
+  Submit your sitemap URL to guide Bing's crawler.
+</ParamField>
+
+<ParamField header="User-Agent" param-type="string">
+  Verify custom user agents in tools.
+</ParamField>
+
+Configure settings like preferred domain and geo-targeting directly in the dashboard.
+
+## Leveraging AI-Driven Search Insights
+
+Sheng Hualuo uses AI to provide proactive recommendations.
+
+<Expandable title="Advanced AI Features" default-open="false">
+
+AI analyzes your site's content against Bing's index to suggest improvements.
+
+```javascript
+// Get AI recommendations
+const aiRecs = await fetch('https://api.example.com/v1/ai-insights', {
+  method: 'POST',
+  body: JSON.stringify({ siteId: 'your-site-id' })
+});
+```
+
+<CodeGroup tabs="JavaScript,Python">
+```javascript
+// Process recommendations
+aiRecs.forEach(rec => {
+  if (rec.priority === 'high') {
+    console.log(`Optimize: ${rec.keyword}`);
+  }
+});
+```
+```python
+# Process recommendations
+for rec in ai_recs:
+    if rec['priority'] == 'high':
+        print(f"Optimize: {rec['keyword']}")
+```
+</CodeGroup>
+
+</Expandable>
+
+<Callout kind="tip">
+  Regularly review AI insights to stay ahead of search trends. Start with high-priority recommendations for quickest wins.
+</Callout>

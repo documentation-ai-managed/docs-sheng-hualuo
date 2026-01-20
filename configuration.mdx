@@ -1,0 +1,161 @@
+---
+title: Configuring Site Settings
+description: Guide to advanced configuration options for improving site indexing and search performance using Sheng Hualuo's tools.
+---
+
+## Overview
+
+Configure your site settings in Sheng Hualuo to enhance indexing, manage sitemaps, optimize SEO parameters, and integrate AI-driven search features. Access these options from the [dashboard](https://dashboard.example.com/sites/your-site.com/settings). These settings help Bing's search engine better understand and rank your content.
+
+<Callout kind="info">
+  Enable these configurations after verifying your site ownership. Changes may take up to 48 hours to reflect in search results.
+</Callout>
+
+## Custom Site Verification Methods
+
+Verify ownership using multiple methods for redundancy. Choose from HTML meta tag, DNS record, or file upload.
+
+<Tabs>
+  <Tab title="HTML Meta Tag" icon="code">
+    Add the provided meta tag to your site's `<head>` section.
+    
+    <Steps>
+      <Step title="Generate Tag" icon="key">
+        In the dashboard, select **HTML Tag** verification and copy the meta tag.
+      </Step>
+      <Step title="Insert Tag">
+        Edit your `index.html`:
+        
+````html
+<meta name="shenghualuo-site-verification" content="your-verification-token-here" />
+````
+        
+      </Step>
+      <Step title="Confirm">
+        Click **Verify** in the dashboard.
+      </Step>
+    </Steps>
+  </Tab>
+  
+  <Tab title="DNS TXT Record" icon="globe">
+    Add a TXT record to your domain's DNS settings.
+    
+    <CodeGroup tabs="cPanel,Cloudflare">
+````bash
+# cPanel example
+Type: TXT
+Name: yourdomain.com
+Value: sheng=your-verification-token-here
+````
+````bash
+# Cloudflare example
+Type: TXT
+Name: @
+Content: sheng=your-verification-token-here
+TTL: Auto
+````
+    </CodeGroup>
+  </Tab>
+</Tabs>
+
+## Sitemaps and Index Management
+
+Submit sitemaps to accelerate crawling and indexing. Sheng Hualuo prioritizes URLs in submitted sitemaps.
+
+<Columns cols={2}>
+  <Card title="Submit Sitemap" icon="upload" href="#submit-sitemap">
+    Add your `sitemap.xml` URL.
+  </Card>
+  <Card title="Index Coverage" icon="search" href="#index-coverage">
+    Monitor indexed pages.
+  </Card>
+</Columns>
+
+### Submit Sitemap
+
+<Steps>
+  <Step title="Generate Sitemap" icon="file">
+    Create a standard sitemap at `https://your-site.com/sitemap.xml`.
+  </Step>
+  <Step title="Submit">
+    In dashboard > **Sitemaps** > **Add Sitemap**:
+    
+    <ParamField path="sitemap_url" param-type="string" required="true">
+      Full URL to your sitemap file.
+    </ParamField>
+    
+    Example: `https://your-site.com/sitemap.xml`
+  </Step>
+</Steps>
+
+## SEO Optimization Parameters
+
+Fine-tune crawl settings and SEO directives.
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| crawl-delay | integer | 1 | Seconds between requests (`<1s` for aggressive crawling) |
+| max-urls-per-day | integer | 5000 | Daily crawl budget |
+| noindex-tags | boolean | false | Respect `noindex` meta tags |
+
+<ParamField query="crawlBudget" param-type="integer" required="false">
+  Set custom daily crawl limits, e.g., `10000`.
+</ParamField>
+
+<ParamField header="X-Robots-Tag" param-type="string">
+  Add headers like `noindex, nofollow`.
+</ParamField>
+
+## AI Search Integration Settings
+
+Enable AI-enhanced search features for better content understanding.
+
+<Expandable title="Advanced AI Config" default-open="false">
+  Edit `sheng-hualuo.json` in your site root:
+  
+````json
+{
+  "aiSearch": {
+    "enabled": true,
+    "model": "gpt-4o-mini",
+    "schemaTypes": ["Product", "Article"]
+  }
+}
+````
+  
+  Upload via dashboard > **AI Settings** > **Custom Config**.
+</Expandable>
+
+<Callout kind="tip">
+  Test configurations using the **Preview** tool in the dashboard before applying live changes.
+</Callout>
+
+## Troubleshooting Common Issues
+
+<ExpandableGroup>
+  <Expandable title="Sitemap Not Indexed" default-open="true">
+    Check for XML errors:
+    
+    ```bash
+    curl -I https://your-site.com/sitemap.xml
+    ```
+    
+    Ensure `<lastmod>` dates are recent and URLs are canonical.
+  </Expandable>
+  
+  <Expandable title="Verification Fails">
+    Clear DNS cache and wait 1 hour. Use `dig TXT yourdomain.com` to verify records.
+  </Expandable>
+</ExpandableGroup>
+
+<Columns cols={3}>
+  <Card title="Quickstart" icon="rocket" href="/quickstart">
+    Get started fast.
+  </Card>
+  <Card title="SEO Guide" icon="trending-up" href="/seo-guide">
+    Advanced SEO tips.
+  </Card>
+  <Card title="API Reference" icon="api" href="/api">
+    Programmatic access.
+  </Card>
+</Columns>

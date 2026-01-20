@@ -1,0 +1,118 @@
+---
+title: Changelog
+description: Track the latest updates and improvements to Sheng Hualuo, including new features and bug fixes.
+---
+
+## Recent Updates
+
+<Callout kind="info">
+  Sheng Hualuo releases updates regularly to enhance your webmaster experience. Check this page often or subscribe to notifications in your dashboard at `https://dashboard.example.com/notifications`.
+</Callout>
+
+Stay informed about new features, performance improvements, and critical fixes that help optimize your site's visibility in search results.
+
+<Update label="2024-10-15" description="v1.2.0" tags={["feature", "bugfix"]}>
+
+## New Features
+
+- Added AI-driven traffic insights to predict new opportunities and recommend optimizations.
+- Introduced bulk site verification for managing multiple domains efficiently.
+
+## Improvements
+
+- Enhanced index coverage reports with interactive filters for deeper analysis.
+
+## Bug Fixes
+
+- Fixed intermittent failures in sitemap submission API calls.
+- Resolved dashboard loading issues on slower connections.
+
+</Update>
+
+<Update label="2024-09-20" description="v1.1.0" tags={["feature", "improvement"]}>
+
+## New Features
+
+- New performance analytics dashboard with real-time metrics from Bing search.
+- Added custom alerts for index status changes and traffic drops.
+
+## Improvements
+
+- Optimized API response times by `>30%` for all webmaster endpoints.
+- Improved mobile responsiveness across all report views.
+
+</Update>
+
+<Update label="2024-08-10" description="v1.0.0" tags={["feature", "breaking"]}>
+
+## New Features
+
+- Core webmaster tools including site verification, sitemap submission, and index monitoring.
+- Integrated AI-powered search optimization recommendations.
+
+## Breaking Changes
+
+- Updated API authentication to require `X-API-Key` header instead of query params.
+
+</Update>
+
+## Upgrade Your Integration
+
+Follow these steps to update your Sheng Hualuo integration and benefit from the latest features.
+
+<Steps>
+  <Step title="Review Changelog" icon="book-open">
+    Identify breaking changes relevant to your setup, such as updated authentication headers.
+  </Step>
+  <Step title="Update Dependencies" icon="package">
+    <CodeGroup tabs="npm,yarn">
+      ````bash
+      npm install sheng-hualuo@latest
+      ````
+
+      ````bash
+      yarn add sheng-hualuo@latest
+      ````
+    </CodeGroup>
+  </Step>
+  <Step title="Update API Calls" icon="code">
+    Replace query param auth with header:
+
+    ````javascript
+    const response = await fetch('https://api.example.com/v1/sites/verify', {
+      method: 'POST',
+      headers: {
+        'X-API-Key': 'YOUR_API_KEY',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ url: 'https://your-site.com' })
+    });
+    ````
+  </Step>
+  <Step title="Test and Deploy" icon="rocket">
+    Verify your site settings in the dashboard and monitor for issues.
+  </Step>
+</Steps>
+
+## Upcoming Changes
+
+<Expandable title="Preview of v1.3.0 (Expected November 2024)" default-open="false">
+
+Expect enhanced SEO audit tools with automated fix suggestions and deeper integration with Bing's AI search capabilities. Prepare by reviewing your current sitemap configurations.
+
+</Expandable>
+
+## Resources
+
+<Columns cols={2}>
+  <Card title="API Reference" icon="code" href="/authentication">
+    Explore endpoints and parameters for programmatic access.
+  </Card>
+  <Card title="Submit Feedback" icon="message-circle" href="https://github.com/example/sheng-hualuo/issues" target="_blank">
+    Share your ideas for future updates.
+  </Card>
+</Columns>
+
+<Callout kind="tip">
+  For help with specific versions, check the [GitHub releases page](https://github.com/example/sheng-hualuo/releases).
+</Callout>
